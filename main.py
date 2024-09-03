@@ -135,63 +135,62 @@ def desert_adventure(first=False):
             quit()
     
     else:
-        print("Invalid response. The desert swallows you whole...")
+        print("Invalid response. The desert's dangers overwhelm you as the heat takes its toll...")
         quit()
 
-def next_area(destination=None):
-    if destination == 'desert':
-        print("After resting in the city, you know it's time to face the harsh desert. You gather your supplies and head out once more.")
-        desert_adventure()
-    elif destination == 'city':
-        print("After enduring the desert, you find yourself drawn to the towering ruins of the city. You gather your courage and move towards the skyline.")
-        city_adventure()
+def next_area(destination=None, name=None):
+    if destination:
+        print(f"Your journey takes you towards the {destination}.")
+        if destination == 'desert':
+            desert_adventure(name=name)
+        elif destination == 'city':
+            city_adventure(name=name)
     else:
-        print("With both the city and desert behind you, you return to your camp, your mind heavy with the experiences you've endured.")
-        print("But as you rest, you realize that your journey is far from over. There's one more challenge that lies ahead.")
-
-        # Transition to the final area
-        final_area()
-
+        print("Your journey has led you to a final choice.")
+        final_area(name)
+        
 def final_area(name):
-    print("In the quiet of your camp, a mysterious stranger approaches. His face is hidden by the shadow of his hood, and his voice is deep and haunting.")
-    print("He tells you of a place called the 'Forgotten Bunker,' hidden deep beneath the earth, a relic from before the bombs fell. The bunker, he claims, holds the key to rebuilding the world.")
-    print("With a sense of foreboding and hope, you decide to follow him. The journey is long and treacherous, but you finally reach the entrance to the bunker, hidden behind a waterfall deep in the mountains.")
+    print(f"{name}, you have survived the harsh wasteland, but your journey isn't over.")
+    print("You find yourself at a crossroads. To the north, a mysterious mountain range beckons with the promise of safety.")
+    print("To the south, a vast underground bunker offers the possibility of untold treasures.")
     
-    response = input("Do you trust the stranger and enter the bunker, or turn back and continue to survive on your own? (enter/turn back) ").lower()
-
-    if response == 'enter':
-        print("You follow the stranger into the dark, descending a spiral staircase that seems to go on forever. The air grows colder with each step.")
-        print("When you finally reach the bottom, the bunker door creaks open, revealing a room filled with advanced technology, untouched for centuries.")
-        print("The stranger steps forward, revealing his face at last—a ghoul, scarred by radiation but filled with knowledge of the old world.")
-        print("He tells you that the bunker holds the remnants of a powerful AI that once controlled the world's resources. With it, you could either bring about a new era of prosperity or doom the wasteland forever.")
+    final_choice = input("Where will you go? The mountains or the bunker? (mountains/bunker) ").lower()
+    
+    if final_choice == 'mountains':
+        print(f"{name}, you trek towards the mountains, your heart filled with hope.")
+        print("The journey is long and arduous, but as you reach the summit, you are greeted by a breathtaking view of a hidden valley.")
+        print("This place is untouched by the horrors of the wasteland, and you know you've found a new home. Your journey has finally come to an end.")
+    
+    elif final_choice == 'bunker':
+        print(f"{name}, you decide to explore the bunker, your curiosity piqued.")
+        print("As you descend into the depths, the air grows colder, and the darkness thickens.")
+        print("You find rooms filled with advanced technology and relics of the past. But as you delve deeper, you realize that")
+        print("you are not alone. The bunker is inhabited by strange, robotic sentinels, still active after all these years.")
+        print("You must navigate through a labyrinth of corridors, avoiding or disabling the sentinels as you search for the fabled treasures.")
         
-        decision = input("Do you attempt to reactivate the AI and use its power to rebuild, or destroy it to prevent anyone from misusing it? (reactivate/destroy) ").lower()
+        sentinel_encounter = input("Do you attempt to hack the sentinels or destroy them? (hack/destroy) ").lower()
         
-        if decision == 'reactivate':
-            print("You connect the systems, and the AI awakens, its cold, digital voice echoing in the chamber. You issue commands, and the bunker hums to life.")
-            print("Across the wasteland, old machines begin to stir. Crops begin to grow in irradiated soil, and clean water starts to flow. The wasteland is reborn.")
-            print(f"As the new leader, {name}, you guide the survivors into a new age. But with great power comes great responsibility, and the future is yours to shape.")
-            print("Ending: The Wasteland Reborn")
+        if sentinel_encounter == 'hack':
+            print("You manage to access a terminal and, using your knowledge of pre-war technology, hack into the bunker’s security systems.")
+            print("The sentinels now recognize you as an ally, allowing you to explore the bunker freely. You discover a cache of advanced weapons, armor, and a vast array of supplies.")
+            print(f"As you prepare to leave the bunker, you realize that with this newfound power, you could reshape the wasteland, {name}.")
+            print("Your journey has given you not only survival, but the potential to change the fate of the world. The future is yours to shape.")
         
-        elif decision == 'destroy':
-            print("You look at the terminal and realize that no one should wield this much power. You set the self-destruct sequence, and the bunker begins to shake.")
-            print("The stranger watches in silence as you both run for the exit. The ground trembles as the bunker collapses behind you, burying the secrets of the past forever.")
-            print(f"You return to the wasteland, {name}, knowing that you've prevented a potential disaster. Life continues, but the future is uncertain.")
-            print("Ending: The Past Buried")
+        elif sentinel_encounter == 'destroy':
+            print("You decide to fight your way through the bunker, engaging in intense combat with the robotic sentinels.")
+            print("After a grueling battle, you emerge victorious, but not unscathed. The bunker is littered with destroyed machines and the remnants of a forgotten era.")
+            print("Among the wreckage, you find the legendary treasures of the bunker: powerful artifacts from before the war, capable of altering the very fabric of reality.")
+            print(f"As you stand amidst the ruins, {name}, you realize that the true treasure was not the artifacts, but the strength and resilience you discovered within yourself.")
+            print("Your journey has come to an end, but your legend will live on in the wasteland.")
         
         else:
-            print("Invalid response. The AI remains dormant, and you are left to wonder what could have been...")
-            print("The journey ends here.")
+            print("Invalid response. As you hesitate, the sentinels detect your presence and you are overwhelmed by their relentless assault.")
+            print("Your journey ends here, deep in the heart of the bunker, your story lost to the darkness.")
             quit()
     
-    elif response == 'turn back':
-        print(f"You decide that some things are better left forgotten. You turn away from the bunker and leave the stranger behind.")
-        print(f"Returning to the wasteland, {name}, you continue to survive, knowing that the world will move on, with or without you.")
-        print("Ending: The Lone Wanderer")
-    
     else:
-        print("Invalid response. The stranger disappears, and the opportunity is lost...")
-        print("The journey ends here.")
+        print("Invalid response. As you stand at the crossroads, indecision consumes you, and the wasteland claims another victim.")
+        print("Your journey ends here, forgotten in the sands of time.")
         quit()
 
 # Start the game
